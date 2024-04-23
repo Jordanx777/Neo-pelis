@@ -14,8 +14,8 @@
     <?php endif; ?>
         <h2>inicio de sesion</h2>
         <form action="../controller/ControllerValidacion.php" method="post">
-            <input name="correo" type="email"><br><br>
-            <input name="contraseña" type="password"><br><br>
+            <input name="correo" placeholder="Ingrese su correo" type="email"><br><br>
+            <input name="contraseña" placeholder="Ingrese su contraseña" type="password"><br><br>
             <input name="inicio" type="submit" value="iniciar sesion">
             <a href="../views/formulario.php">registrate</a>
         </form>

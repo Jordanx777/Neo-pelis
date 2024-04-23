@@ -10,9 +10,9 @@
 <body>
     <div>
         <form action="../controller/ControllerRegistro.php" method="post">
-            <input required name="nombre"  type="text"><br><br>
-            <input required name="correo"  type="email"><br><br>
-            <input required name="contraseña"  type="password"><br><br>
+            <input required name="nombre" placeholder="Ingrese su nombre" type="text"><br><br>
+            <input required name="correo" placeholder="Ingrese un correo" type="email"><br><br>
+            <input required name="contraseña" placeholder="Ingrese una contraseña " type="password"><br><br>
             <!-- <section require>rol
                 <select name="rol" id="rol">
                     <option value="1">admin</option>
