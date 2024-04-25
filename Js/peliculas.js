@@ -2,11 +2,63 @@ const api_key = "api_key=11ea32f427c2b6ca23c5a5615a8aca5e";
 const base_url = "https://api.themoviedb.org/3";
 const api_url = base_url + "/discover/movie?sort_by=popularity.desc&" + api_key;
 const img_peli = "https://image.tmdb.org/t/p/w500";
+const img_peli2 = "https://image.tmdb.org/t/p/original";
 const main = document.getElementById("main");
 const buscarURL = base_url + "/search/movie?" + api_key;
 const search = document.getElementById("buscar");
 const form = document.getElementById("form");
 const banner = document.getElementById("banner");
+const genres = [{"id":28,"name":"Action"},
+                {"id":12,"name":"Adventure"},
+                {"id":16,"name":"Animation"},
+                {"id":35,"name":"Comedy"},
+                {"id":80,"name":"Crime"},
+                {"id":99,"name":"Documentary"},
+                {"id":18,"name":"Drama"},
+                {"id":10751,"name":"Family"},
+                {"id":14,"name":"Fantasy"},
+                {"id":36,"name":"History"},
+                {"id":27,"name":"Horror"},
+                {"id":10402,"name":"Music"},
+                {"id":9648,"name":"Mystery"},
+                {"id":10749,"name":"Romance"},
+                {"id":878,"name":"Science Fiction"},
+                {"id":10770,"name":"TV Movie"},
+                {"id":53,"name":"Thriller"},
+                {"id":10752,"name":"War"},
+                {"id":37,"name":"Western"}]
+const tagsEl = document.getElementById('tags');
+
+var selectgenere= []
+setGenere();
+function setGenere(){
+tagsEl.innerHTML= '';
+genres.forEach(genre => {
+  const t = document.createElement('div');
+  t.classList.add('tag');
+  t.id=genre.id;
+  t.innerText = genre.name;
+  t.addEventListener('click', () => {
+      if(selectgenere.length == 0){
+        selectgenere.push(genre.id);
+      }else{
+        if(selectgenere.includes(genre.id)){
+          selectgenere.forEach((id, idx) => {
+              if(id == genre.id){
+                selectgenere.splice(idx, 1);
+              }
+              })  
+            }else{
+                selectgenere.push(genre.id);
+              }
+          }
+console.log(selectgenere)
+getMovies(api_url + '&with_genres=' + encodeURI(selectgenere.join(',')))
+})
+      
+  tagsEl.append(t);
+})
+}                
 
 getMovies(api_url);
 
@@ -59,31 +111,50 @@ function bannerImg(id) {
         backdrop_path,
         overview,
         release_date,
+        original_language
       } = movieData;
      
-      document.documentElement.style.setProperty('--imgBanner', `url(${img_peli + backdrop_path})`);
+      document.documentElement.style.setProperty('--imgBanner', `url(${img_peli2 + backdrop_path})`);
       banner.classList.add("banner");
       /* banner.style.background = `url(${img_peli + backdrop_path})`; */
 
       banner.innerHTML = `
         <div class="content active">
-          <img src="${
+          
+        
+        <h1 class="titulo-pelicula">${title}</h1>
+        <!--<img src="${
             img_peli + poster_path
-          }" class="title-peli" alt="${title}">
+          }" class="title-peli" alt="${title}">-->
+          
+          <p id="overvie">${overview}</p>
           <h4 id="califi">
             <span>${release_date} </span>
-            <span>12+</span>
-            <span>2h 14min</span>
-            <span>genero</span>
+            <span class="${getColor(vote_average)}" >${vote_average}</span>
+            <span>${original_language}</span>
+           
+            <!--<span>genero</span>-->
           </h4>
-          <p id="overvie">${overview}</p>
+          
           <div class="button">
             <a href="#">boton de play</a>
             <a href="#">boton plus</a>
           </div>
         </div>
       `;
-    });
+    })
+    
+    function getColor(vote){
+      if(vote>= 8 ){
+        return  'green'
+      }else if(vote>= 5){
+        return 'orange'
+      }else {
+        return 'red'
+      }
+    }
+    
+    ;
 }
 
 $("#buscar").keyup(function () {
@@ -135,8 +206,8 @@ function openNav(movie) {
 
       if (embed.includes("player")) {
         player = new YT.Player("player", {
-          height: "315",
-          width: "560",
+          height: "630",
+          width: "1120",
           videoId: videoKey,
           playerVars: {
             autoplay: 1,
@@ -178,7 +249,7 @@ document.getElementById("btnCerrar").addEventListener("click", () => {
 
 
 
-/* scrool para rriba */
+/* scrool para arriba */
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function (e) {
      e.preventDefault();
