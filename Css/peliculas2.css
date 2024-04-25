@@ -140,7 +140,7 @@ header{
     justify-content: space-between;
     align-items: center;
     background: var(--imgBanner);
-    background-size: contain;
+    background-size: cover;
 
    
     background-position: center;
