@@ -2,6 +2,7 @@ const api_key = "api_key=11ea32f427c2b6ca23c5a5615a8aca5e";
 const base_url = "https://api.themoviedb.org/3";
 const api_url = base_url + "/discover/movie?sort_by=popularity.desc&" + api_key;
 const img_peli = "https://image.tmdb.org/t/p/w500";
+const img_peli2 = "https://image.tmdb.org/t/p/original";
 const main = document.getElementById("main");
 const buscarURL = base_url + "/search/movie?" + api_key;
 const search = document.getElementById("buscar");
@@ -59,24 +60,30 @@ function bannerImg(id) {
         backdrop_path,
         overview,
         release_date,
+        original_language
       } = movieData;
      
-      document.documentElement.style.setProperty('--imgBanner', `url(${img_peli + backdrop_path})`);
+      document.documentElement.style.setProperty('--imgBanner', `url(${img_peli2 + backdrop_path})`);
       banner.classList.add("banner");
       /* banner.style.background = `url(${img_peli + backdrop_path})`; */
 
       banner.innerHTML = `
         <div class="content active">
-          <img src="${
+          
+        
+        <h1 class="titulo-pelicula">${title}</h1>
+        <!--<img src="${
             img_peli + poster_path
-          }" class="title-peli" alt="${title}">
+          }" class="title-peli" alt="${title}">-->
+          
+          <p id="overvie">${overview}</p>
           <h4 id="califi">
             <span>${release_date} </span>
-            <span>12+</span>
+            <span>${original_language}</span>
             <span>2h 14min</span>
             <span>genero</span>
           </h4>
-          <p id="overvie">${overview}</p>
+          
           <div class="button">
             <a href="#">boton de play</a>
             <a href="#">boton plus</a>
@@ -140,7 +147,7 @@ function openNav(movie) {
           videoId: videoKey,
           playerVars: {
             autoplay: 1,
-            controls: 1,
+            controls: 0,
             rel: 0,
             modestbranding: 1,
           },
