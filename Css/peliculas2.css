@@ -21,6 +21,10 @@ body{
       font-style: normal;
 }
 
+#califi{
+    display: inline-block;
+}
+
 .titulo-pelicula{
     font-size: 80px;
     /*font-style: oblique;*/
@@ -136,10 +140,11 @@ header{
     justify-content: space-between;
     align-items: center;
     background: var(--imgBanner);
-    background-size: cover;
+    background-size: contain;
+
    
     background-position: center;
-   background-repeat: no-repeat;
+    background-repeat: no-repeat;
     transition: 0.5s;
 
     
@@ -479,3 +484,23 @@ h4{
       right: 35px;
     }
   }
+
+ /*menu*/
+ #tags{
+    width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin: 10px auto;
+ }
+
+ .tag{
+    color: white;
+    padding: 10px 20px;
+    background-color: orange;
+    display: inline-block;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 10px;
+ }
