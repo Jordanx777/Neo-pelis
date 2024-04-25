@@ -140,7 +140,7 @@ function openNav(movie) {
           videoId: videoKey,
           playerVars: {
             autoplay: 1,
-            controls: 1,
+            controls: 0,
             rel: 0,
             modestbranding: 1,
           },
