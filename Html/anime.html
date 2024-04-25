@@ -2,90 +2,173 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!--bootstrap-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <!--material css-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <!--css-->
-    <link rel="stylesheet" href="/Css/jordano.css">
     <title>Neo-Pelis</title>
+
+    <link
+  rel="stylesheet"
+  href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+
+    <link rel="stylesheet" href="../Css/anime.css">
+
 </head>
 <body>
 
+
     <header>
-        
-        <a href="#" class="logo">Neo-Movies</a>
-        <ul class="nav">
-            <li><a href="/Html/index.html" class="letra" >Home</a></li>
-            <li><a href="/Html/index.html" class="letra" >Peliculas</a></li>
-            <li><a href="#" class="letra" >Animes</a></li>
-            <li><a href="#" class="letra" >Favoritos</a></li>
-        </ul>
-
-        <form action="" method="post" id="form">
-        <div class="search">
-            <input type="text" placeholder="buscar" id="buscar" class="input-group mb-3">
+        <a href="#" class="logo"><i class="fas fa-bars"></i> Neo  Pelis</a>
+        <nav class="navbar">
+             <a href="index.html">home</a>
+             <a href="#anime">anime</a>
+             <a href="#action">action</a>
+             <a href="#child">child</a>
+             <a href="#family">family</a>
+        </nav>
+        <div class="icons">
+            <i class="fas fa-bars" id="menu-bars"></i>
+            <i class="fas fa-search" id="search-icon"></i>
+            <a href="#" class="fas fa-heart"></a>
         </div>
-    </form>
-</header>
-
-<div class="bannerAnime">
-    <div class="content active">
-        <img src="/img/naruto-shippuden-Logo-removebg-preview.png" class="title-peli" alt="">
-
-        <h4>
-            <span>2023</span>
-            <span>12+</span>
-            <span>2h 14min</span>
-            <span>genero</span>
-        </h4>
-
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque optio, dolores suscipit eveniet quis nemo velit minus nam explicabo <br>
-             nulla commodi accusamus, culpa ipsa provident iure inventore maiores voluptatem sunt.</p>
+    </header>
 
 
-             <div class="button">
-                <a href="#">boton de play</a>
-                <a href="#">boton plus</a>
-             </div>
+
+<section class="home" id="home">
+
+    <div class="swiper home-slider">
+
+        <div class="swiper-wrapper">
+
+            <div class="swiper-slide">
+                <div class="box " style="background: url(../img/naruto-shippuden-Logo-removebg-preview.png) no-repeat;">
+                    <div class="content">
+                        <h3>Kakegurui</h3>
+                        <p>High roller Yumeko Jabami plans to clean house at Hyakkaou Private<br>
+                        Academy, a school where students are evaluated solely on their<br>
+                        gambling skills.</p>
+                        <a href="#" class="btn">Download</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="swiper-slide">
+                <div class="box second" style="background: url(img/home-img-3.jpeg) no-repeat;">
+                    <div class="content">
+                        <h3>DEATH NOTE</h3>
+                         <p>When a Japanese high schooler comes into possession of a mystical<br>
+                        notebook, he finds he has the power to kill anybody whose name he<br>
+                        enters in it.</p>
+                        <a href="#" class="btn">Download</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="swiper-slide">
+                <div class="box " style="background: url(img/home-img-4.jpeg) no-repeat;">
+                    <div class="content">
+                        <h3>One-Punch Man</h3>
+                         <p>The most powerful superhero in the world can kill anyone with one<br>
+                        blow. But nothing can challenge him, so he struggles with ennui and<br>
+                        depression</p>
+                        <a href="#" class="btn">Download</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="swiper-slide">
+                <div class="box " style="background: url(img/home-img-2.jpeg) no-repeat;">
+                    <div class="content">
+                        <h3>Naruto</h3>
+                        <p>Guided by the spirit demon within him, orphaned Naruto learns<br>
+                        to harness his powers as a ninja in this anime adventure series.</p>
+                        <a href="#" class="btn">Download</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
     </div>
 
-    <div class="carousel-box">
-        <div class="carousel">
-            <div class="carousel-item">
-                <img src="img/cara1.png" alt="">
+</section>
+
+
+
+<section class="anime" id="anime">
+    <h1 class="heading">Popular on Anime</h1>
+    <div class="swiper anime-slider">
+        <div class="swiper-wrapper" id="campoSlider">
+            
+        </div>
+    </div>
+</section>
+
+<section class="action" id="action">
+    <h1 class="heading">Action Movies</h1>
+    <div class="swiper action-slider">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <div class="box" style="background: url(img/anime-img-1.jpg) no-repeat;"></div>
+                <div class="content">
+                    <h3>Naruto</h3>
+                    <p>Guided by the spirit demon within him, orphaned Naruto learns
+                    to harness his powers as a ninja in this anime adventure series.</p>
+                    <a href="#" class="btn">Download</a>
+                </div>
             </div>
-            <div class="carousel-item">
-                <img src="img/cara2.png" alt="">
-            </div>
-            <div class="carousel-item">
-                <img src="img/cara3.png" alt="">
+        </div>
+</div>
+</section>
+
+
+
+<section class="child" id="child">
+    <h1 class="heading">Child Movies</h1>
+    <div class="swiper child-slider">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <div class="box" style="background: url(img/anime-img-1.jpg) no-repeat;"></div>
+                <div class="content">
+                    <h3>Naruto</h3>
+                    <p>Guided by the spirit demon within him, orphaned Naruto learns
+                    to harness his powers as a ninja in this anime adventure series.</p>
+                    <a href="#" class="btn">Download</a>
+                </div>
             </div>
         </div>
     </div>
+</section>
 
 
+
+<section class="family" id="family">
+    <h1 class="heading">Family Movies</h1>
+    <div class="swiper family-slider">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <div class="box" style="background: url(img/anime-img-1.jpg) no-repeat;"></div>
+                <div class="content">
+                    <h3>Naruto</h3>
+                    <p>Guided by the spirit demon within him, orphaned Naruto learns
+                    to harness his powers as a ninja in this anime adventure series.</p>
+                    <a href="#" class="btn">Download</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<div class="copyright container">
+    <a href="#" class="logo"><i class="fas fa-infinity"></i>Anime.</a>
+    <p>&#169; Dailywebdesign. All rights reserved.</p>
 </div>
 
 
-<main id="main">
-    <div class="movie"></div>
-</main>
-
-
-<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-<script>
-      $(document).ready(function(){
-$('.carousel').carousel();
-});
-</script>
-
-
-    
-
-</body>
+ <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js" defer data-deferred="1"></script>  <script src="../Js/animes.js" defer data-deferred="1"></script> </body>
 </html>
