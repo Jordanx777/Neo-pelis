@@ -8,57 +8,62 @@ const buscarURL = base_url + "/search/movie?" + api_key;
 const search = document.getElementById("buscar");
 const form = document.getElementById("form");
 const banner = document.getElementById("banner");
-const genres = [{"id":28,"name":"Action"},
-                {"id":12,"name":"Adventure"},
-                {"id":16,"name":"Animation"},
-                {"id":35,"name":"Comedy"},
-                {"id":80,"name":"Crime"},
-                {"id":99,"name":"Documentary"},
-                {"id":18,"name":"Drama"},
-                {"id":10751,"name":"Family"},
-                {"id":14,"name":"Fantasy"},
-                {"id":36,"name":"History"},
-                {"id":27,"name":"Horror"},
-                {"id":10402,"name":"Music"},
-                {"id":9648,"name":"Mystery"},
-                {"id":10749,"name":"Romance"},
-                {"id":878,"name":"Science Fiction"},
-                {"id":10770,"name":"TV Movie"},
-                {"id":53,"name":"Thriller"},
-                {"id":10752,"name":"War"},
-                {"id":37,"name":"Western"}]
-const tagsEl = document.getElementById('tags');
+const genres = [
+  { id: 28, name: "Action" },
+  { id: 12, name: "Adventure" },
+  { id: 16, name: "Animation" },
+  { id: 35, name: "Comedy" },
+  { id: 80, name: "Crime" },
+  { id: 99, name: "Documentary" },
+  { id: 18, name: "Drama" },
+  { id: 10751, name: "Family" },
+  { id: 14, name: "Fantasy" },
+  { id: 36, name: "History" },
+  { id: 27, name: "Horror" },
+  { id: 10402, name: "Music" },
+  { id: 9648, name: "Mystery" },
+  { id: 10749, name: "Romance" },
+  { id: 878, name: "Science Fiction" },
+  { id: 10770, name: "TV Movie" },
+  { id: 53, name: "Thriller" },
+  { id: 10752, name: "War" },
+  { id: 37, name: "Western" },
+];
+const tagsEl = document.getElementById("tags");
 
-var selectgenere= []
+var selectgenere = [];
 setGenere();
-function setGenere(){
-tagsEl.innerHTML= '';
-genres.forEach(genre => {
-  const t = document.createElement('div');
-  t.classList.add('tag');
-  t.id=genre.id;
-  t.innerText = genre.name;
-  t.addEventListener('click', () => {
-      if(selectgenere.length == 0){
+function setGenere() {
+  tagsEl.innerHTML = "";
+  genres.forEach((genre) => {
+    const t = document.createElement("div");
+    t.classList.add("tag");
+    t.id = genre.id;
+    t.innerText = genre.name;
+    t.addEventListener("click", () => {
+      if (selectgenere.length == 0) {
         selectgenere.push(genre.id);
-      }else{
-        if(selectgenere.includes(genre.id)){
+        t.classList.add('seleccionado');
+      } else {
+        if (selectgenere.includes(genre.id)) {
           selectgenere.forEach((id, idx) => {
-              if(id == genre.id){
-                selectgenere.splice(idx, 1);
-              }
-              })  
-            }else{
-                selectgenere.push(genre.id);
-              }
-          }
-console.log(selectgenere)
-getMovies(api_url + '&with_genres=' + encodeURI(selectgenere.join(',')))
-})
-      
-  tagsEl.append(t);
-})
-}                
+            if (id == genre.id) {
+              selectgenere.splice(idx, 1);
+              t.classList.remove('seleccionado');
+            }
+          });
+        } else {
+          selectgenere.push(genre.id);
+          t.classList.add('seleccionado');
+        }
+      }
+      console.log(selectgenere);
+      getMovies(api_url + "&with_genres=" + encodeURI(selectgenere.join(",")));
+    });
+
+    tagsEl.append(t);
+  });
+}
 
 getMovies(api_url);
 
@@ -81,16 +86,20 @@ function showMovies(data) {
     peli.classList.add("movie");
     peli.innerHTML = `<img src="${img_peli + poster_path}" alt="${title}">
         <h4>${title}</h4>
-        <div class="flex-banner"><input type="button" class="ver_trailer" data-id="${id}" value="Trailer">
+        <div class="flex-banner"><input type="button" class="ver_trailer" data-id="${id}" value="Trailer"><input type="button" class="ver_trailer_p" data-id="${id}" value="Prueba">
        <a href="#banner" data-id="${id}" class="ver_trailer_banner">Escena</a>
         </div>
         `;
- /* <input type="button" class="ver_trailer_banner" data-id="${id}" value="Esce">*/
+    /* <input type="button" class="ver_trailer_banner" data-id="${id}" value="Esce">*/
     main.appendChild(peli);
     peli.querySelector(".ver_trailer_banner").addEventListener("click", (e) => {
       const idPelicula = e.target.getAttribute("data-id");
-      
+
       bannerImg(idPelicula);
+    });
+    peli.querySelector(".ver_trailer_p").addEventListener("click", (e) => {
+      const idPelicula = e.target.getAttribute("data-id");
+      videoS(idPelicula);
     });
     peli.querySelector(".ver_trailer").addEventListener("click", (e) => {
       openNav(movie);
@@ -111,10 +120,13 @@ function bannerImg(id) {
         backdrop_path,
         overview,
         release_date,
-        original_language
+        original_language,
       } = movieData;
-     
-      document.documentElement.style.setProperty('--imgBanner', `url(${img_peli2 + backdrop_path})`);
+
+      document.documentElement.style.setProperty(
+        "--imgBanner",
+        `url(${img_peli2 + backdrop_path})`
+      );
       banner.classList.add("banner");
       /* banner.style.background = `url(${img_peli + backdrop_path})`; */
 
@@ -124,8 +136,8 @@ function bannerImg(id) {
         
         <h1 class="titulo-pelicula">${title}</h1>
         <!--<img src="${
-            img_peli + poster_path
-          }" class="title-peli" alt="${title}">-->
+          img_peli + poster_path
+        }" class="title-peli" alt="${title}">-->
           
           <p id="overvie">${overview}</p>
           <h4 id="califi">
@@ -142,19 +154,17 @@ function bannerImg(id) {
           </div>
         </div>
       `;
-    })
-    
-    function getColor(vote){
-      if(vote>= 8 ){
-        return  'green'
-      }else if(vote>= 5){
-        return 'orange'
-      }else {
-        return 'red'
-      }
+    });
+
+  function getColor(vote) {
+    if (vote >= 8) {
+      return "green";
+    } else if (vote >= 5) {
+      return "orange";
+    } else {
+      return "red";
     }
-    
-    ;
+  }
 }
 
 $("#buscar").keyup(function () {
@@ -164,6 +174,7 @@ $("#buscar").keyup(function () {
   }
 });
 
+/* Funcion de los trailers */
 let player;
 let videoKey;
 
@@ -223,9 +234,9 @@ function openNav(movie) {
       }
     });
 }
-
+/* video */
 function onPlayerReady(event) {}
-
+/* funcion para los estados del video, como pausar */
 function onPlayerStateChange(event) {
   if (event.data === YT.PlayerState.PAUSED) {
     Swal.fire({
@@ -240,29 +251,29 @@ function onPlayerStateChange(event) {
     });
   }
 }
-
+/* cierre de funcion del video */
 document.getElementById("btnCerrar").addEventListener("click", () => {
   if (player) {
     player.pauseVideo();
+    document.getElementById("myNav").style.width = "0%";
   }
+  document.getElementById("myNav").style.width = "0%";
 });
-
-
 
 /* scrool para arriba */
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function (e) {
-     e.preventDefault();
+document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+  anchor.addEventListener("click", function (e) {
+    e.preventDefault();
 
-     const targetId = this.getAttribute('href').substring(1);
-     const targetSection = document.getElementById(targetId);
+    const targetId = this.getAttribute("href").substring(1);
+    const targetSection = document.getElementById(targetId);
 
-     if (targetSection) {
-        window.scrollTo({
-           behavior: 'smooth',
-           top: targetSection.offsetTop,
-        });
-     }
+    if (targetSection) {
+      window.scrollTo({
+        behavior: "smooth",
+        top: targetSection.offsetTop,
+      });
+    }
   });
 });
-/*  */
+/* cierre de scroll */

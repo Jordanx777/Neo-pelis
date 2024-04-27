@@ -384,6 +384,19 @@ header{
     text-transform: uppercase;
     transition: 0.5s;
     cursor: pointer;
+}.ver_trailer_p{
+    position: relative;
+    display: inline-block;
+    margin-right: 10px;
+    background: orange;
+    color: white;
+    padding: 6px 20px;
+    text-decoration: none;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: 0.5s;
+    cursor: pointer;
 }
 
 
@@ -499,6 +512,15 @@ h4{
     color: white;
     padding: 10px 20px;
     background-color: orange;
+    display: inline-block;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 10px;
+ }
+ .tag.seleccionado{
+    color: white;
+    padding: 10px 20px;
+    background-color: rgb(0, 255, 13);
     display: inline-block;
     margin: 5px;
     cursor: pointer;
