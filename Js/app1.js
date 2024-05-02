@@ -43,18 +43,18 @@ function setGenere() {
     t.addEventListener("click", () => {
       if (selectgenere.length == 0) {
         selectgenere.push(genre.id);
-        t.classList.add('seleccionado');
+        t.classList.add("seleccionado");
       } else {
         if (selectgenere.includes(genre.id)) {
           selectgenere.forEach((id, idx) => {
             if (id == genre.id) {
               selectgenere.splice(idx, 1);
-              t.classList.remove('seleccionado');
+              t.classList.remove("seleccionado");
             }
           });
         } else {
           selectgenere.push(genre.id);
-          t.classList.add('seleccionado');
+          t.classList.add("seleccionado");
         }
       }
       console.log(selectgenere);
@@ -86,20 +86,16 @@ function showMovies(data) {
     peli.classList.add("movie");
     peli.innerHTML = `<img src="${img_peli + poster_path}" alt="${title}">
         <h4>${title}</h4>
-        <div class="flex-banner"><input type="button" class="ver_trailer" data-id="${id}" value="Trailer"><input type="button" class="ver_trailer_p" data-id="${id}" value="Prueba">
+        <div class="flex-banner"><input type="button" class="ver_trailer" data-id="${id}" value="Trailer">
        <a href="#banner" data-id="${id}" class="ver_trailer_banner">Escena</a>
         </div>
         `;
+    /* <input type="button" class="ver_trailer_p" data-id="${id}" value="Prueba"> */
     /* <input type="button" class="ver_trailer_banner" data-id="${id}" value="Esce">*/
     main.appendChild(peli);
     peli.querySelector(".ver_trailer_banner").addEventListener("click", (e) => {
       const idPelicula = e.target.getAttribute("data-id");
-
       bannerImg(idPelicula);
-    });
-    peli.querySelector(".ver_trailer_p").addEventListener("click", (e) => {
-      const idPelicula = e.target.getAttribute("data-id");
-      videoS(idPelicula);
     });
     peli.querySelector(".ver_trailer").addEventListener("click", (e) => {
       openNav(movie);
@@ -238,6 +234,7 @@ function openNav(movie) {
 function onPlayerReady(event) {}
 /* funcion para los estados del video, como pausar */
 function onPlayerStateChange(event) {
+  /* este if es para cuando el video se pause o lo pausen */
   if (event.data === YT.PlayerState.PAUSED) {
     Swal.fire({
       title: "Quieres dejar de ver el video?",
@@ -248,16 +245,41 @@ function onPlayerStateChange(event) {
       if (result.isConfirmed) {
         document.getElementById("myNav").style.width = "0%";
       }
+      else{
+        if (player && player.playVideo) {
+          player.playVideo();
+      }
+      }
     });
   }
+  /* cierre del if de pausa */
+  /* este if captura el evento de cuando se acaba el video y le puse el toast */
+  if (event.data == YT.PlayerState.ENDED) {
+    const Toast = Swal.mixin({
+      toast: true,
+      position: "center",
+      showConfirmButton: false,
+      timer: 4000,
+     /*  timerProgressBar: true, */
+      didOpen: (toast) => {
+        toast.onmouseenter = Swal.stopTimer;
+        toast.onmouseleave = Swal.resumeTimer;
+      }
+    });
+    Toast.fire({    
+      title: "Gracias por ver"
+    });
+    document.getElementById("myNav").style.width = "0%";
+  }
+  /* cierre del if */
 }
 /* cierre de funcion del video */
 document.getElementById("btnCerrar").addEventListener("click", () => {
   if (player) {
     player.pauseVideo();
-    document.getElementById("myNav").style.width = "0%";
+    /*  document.getElementById("myNav").style.width = "0%"; */
   }
-  document.getElementById("myNav").style.width = "0%";
+  
 });
 
 /* scrool para arriba */
