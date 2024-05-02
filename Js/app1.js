@@ -67,16 +67,76 @@ function setGenere() {
 
 getMovies(api_url);
 
-function getMovies(url) {
+/* function getMovies(url) {
   fetch(url)
     .then((res) => res.json())
     .then((data) => {
       console.log(data.results);
       showMovies(data.results);
     });
+} */
+function guardarImagenesLocal(data) {
+  const movieImages = data.map((movie) => img_peli + movie.poster_path);
+  localStorage.setItem("movieImages", JSON.stringify(movieImages));
+  if (localStorage) {
+    console.log('Guardado en local')
+  } else {
+    console.log('No se guardo')
+  }
+}
+
+function getImagenesGuardadas() {
+  const savedImages = localStorage.getItem("movieImages");
+  return savedImages ? JSON.parse(savedImages) : [];
+}
+
+function getMovies(url) {
+  fetch(url)
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data.results);
+      guardarImagenesLocal(data.results); // Guardar imágenes en LocalStorage
+      showMovies(data.results);
+    });
 }
 
 function showMovies(data) {
+  main.innerHTML = "";
+
+  const savedImages = getImagenesGuardadas();
+
+  data.forEach((movie, index) => {
+    const { title, vote_average, overview, release_date, id } = movie;
+
+    // Verificar si la URL de la imagen está guardada
+    const posterUrl = savedImages[index] || img_peli + movie.poster_path;
+
+    const peli = document.createElement("div");
+    peli.classList.add("movie");
+    peli.innerHTML = `
+      <img src="${posterUrl}" alt="${title}">
+      <h4>${title}</h4>
+      <div class="flex-banner">
+        <input type="button" class="ver_trailer" data-id="${id}" value="Trailer">
+        <a href="#banner" data-id="${id}" class="ver_trailer_banner">Escena</a>
+      </div>
+    `;
+
+    main.appendChild(peli);
+
+    peli.querySelector(".ver_trailer_banner").addEventListener("click", (e) => {
+      const idPelicula = e.target.getAttribute("data-id");
+      bannerImg(idPelicula);
+    });
+
+    peli.querySelector(".ver_trailer").addEventListener("click", (e) => {
+      openNav(movie);
+      console.log(movie.id);
+    });
+  });
+}
+//
+/*function showMovies(data) {
   main.innerHTML = "";
 
   data.forEach((movie) => {
@@ -91,8 +151,8 @@ function showMovies(data) {
         </div>
         `;
     /* <input type="button" class="ver_trailer_p" data-id="${id}" value="Prueba"> */
-    /* <input type="button" class="ver_trailer_banner" data-id="${id}" value="Esce">*/
-    main.appendChild(peli);
+/* <input type="button" class="ver_trailer_banner" data-id="${id}" value="Esce">*/
+/*main.appendChild(peli);
     peli.querySelector(".ver_trailer_banner").addEventListener("click", (e) => {
       const idPelicula = e.target.getAttribute("data-id");
       bannerImg(idPelicula);
@@ -102,8 +162,8 @@ function showMovies(data) {
       console.log(movie.id);
     });
   });
-}
-
+}*/
+const savedImages = getImagenesGuardadas();
 function bannerImg(id) {
   fetch(base_url + "/movie/" + id + "?" + api_key)
     .then((res) => res.json())
@@ -118,11 +178,16 @@ function bannerImg(id) {
         release_date,
         original_language,
       } = movieData;
+      const bannerImgUrl = savedImages[id] || img_peli2 + backdrop_path;
 
       document.documentElement.style.setProperty(
         "--imgBanner",
-        `url(${img_peli2 + backdrop_path})`
+        `url(${bannerImgUrl})`
       );
+      /* document.documentElement.style.setProperty(
+        "--imgBanner",
+        `url(${img_peli2 + backdrop_path})`
+      ); */
       banner.classList.add("banner");
       /* banner.style.background = `url(${img_peli + backdrop_path})`; */
 
@@ -244,11 +309,10 @@ function onPlayerStateChange(event) {
     }).then((result) => {
       if (result.isConfirmed) {
         document.getElementById("myNav").style.width = "0%";
-      }
-      else{
+      } else {
         if (player && player.playVideo) {
           player.playVideo();
-      }
+        }
       }
     });
   }
@@ -260,14 +324,14 @@ function onPlayerStateChange(event) {
       position: "center",
       showConfirmButton: false,
       timer: 4000,
-     /*  timerProgressBar: true, */
+      /*  timerProgressBar: true, */
       didOpen: (toast) => {
         toast.onmouseenter = Swal.stopTimer;
         toast.onmouseleave = Swal.resumeTimer;
-      }
+      },
     });
-    Toast.fire({    
-      title: "Gracias por ver"
+    Toast.fire({
+      title: "Gracias por ver",
     });
     document.getElementById("myNav").style.width = "0%";
   }
@@ -279,7 +343,6 @@ document.getElementById("btnCerrar").addEventListener("click", () => {
     player.pauseVideo();
     /*  document.getElementById("myNav").style.width = "0%"; */
   }
-  
 });
 
 /* scrool para arriba */
