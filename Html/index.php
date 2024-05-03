@@ -1,3 +1,6 @@
+<?php //
+// $filas = $_GET["id_cargo"];
+// ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -105,6 +108,7 @@
       <div class="camilo">
         <form action="../Php/controller/ControladorComentarios.php" method="post">
           <p>envianos tus comentarios</p><br>
+          <input name="correo" type="hidden" value="<?= $_SESSION['correo']?>">
           <label for="">nombre</label><br>
           <input required name="nombre" type="texarea"><br>
           <label for="">dejanos tu comentario</label><br>
@@ -112,13 +116,58 @@
           <!-- <input    type="texarea"><br> -->
           <input name="enviar" value="enviar comentario" type="submit"><br>
         </form>
-        <a href="../Php/views/tabla.php">ver comentarios</a><br>
+        <div class="col-8 p-4">
+          <table class="table">
+            <thead class="bs-info">
+              <tr>
+                <th>id</th>
+                <th>correo</th>
+                <th>nombre</th>
+                <th>comentario</th><?php session_start();
+                // include "../model/ModellValidacion.php";
+                // include "../conexion.php";
+                if (isset($_SESSION["correo"]) ) {
+                  echo   "<th>
+                    eliminar
+                  </th>";
+                }
+                
+                ?>
+                
+                
+              </tr>
+            </thead>
+            <tbody>
+              <?php
+                  $conexion = new mysqli("localhost", "root", "", "rol");
+                //   include ("../conexion.php");
+                  $consulta = $conexion->query("SELECT * FROM comentarios");
+                  while ($sql = $consulta->fetch_object()) { ?>
+                <tr>
+                  <td><?= $sql->id ?></td>
+                  <td><?= $sql->correo ?></td>
+                  <td><?= $sql->nombre ?></td>
+                  <td><?= $sql->comentario ?></td>
+                  <!-- <td>
+                    <a href="">eliminar</a>
+                  </td> -->
+                </tr>
+              <?php
+                  }
+
+              ?>
+            </tbody>
+
+          </table>
+        </div>
+        <!-- <a href="../Php/views/tabla.php">ver comentarios</a><br> -->
+        
         <a href="../Php/controller/ControladorSalir.php">cerrar sesion</a>
       </div>
     </div>
   <?php
                 } else {
-                   echo '<div class="comentario">
+                  echo '<div class="comentario">
                    <div class="camilo">
 
 
@@ -129,7 +178,7 @@
                 } ?>
 
 
-  
+
 </body>
 
 </html>

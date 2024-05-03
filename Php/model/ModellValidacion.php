@@ -15,7 +15,7 @@ class Validacion
 
         if ($filas["id_cargo"] == 1 ) { //si es 1 es admin
             $_SESSION["correo"] = $correo;
-            header("Location:../../Html/index.php");
+            header("Location:../../Html/index.php?id_cargo=$filas");
 
         }
         if($filas['id_cargo'] == 2 ){ // si es 2 cliente 

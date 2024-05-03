@@ -1,8 +1,8 @@
 <?php
     class comentario{
-        public function comentarios($nombre,$comentarios){
+        public function comentarios($correo,$nombre,$comentarios){
             $conexion = new mysqli("localhost", "root", "", "rol");
-            $inser = $conexion->query("INSERT INTO comentarios (nombre,comentario) VALUES ('$nombre','$comentarios') ");
+            $inser = $conexion->query("INSERT INTO comentarios (correo,nombre,comentario) VALUES ('$correo','$nombre','$comentarios') ");
             if ($inser) {
                echo   "gracias por comentar sphp :(";
             //    include "../../Html/index.php";
