@@ -1,0 +1,546 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Pixelify+Sans:wght@400..700&display=swap');
+
+:root{
+    --imgBanner: url('../img/banner2.jpg');
+    
+}
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.comentario{
+    width: 100%;
+    height: 400px;
+    background-color: #faf7f7;
+    text-align: center;
+    align-items: center;
+}
+.camilo{
+    width: 200px;
+    height: 200px;
+    text-align: center;
+    position: relative;
+    margin-top: 200px;
+
+}
+.descr{
+    width: 300px;
+    height: 100px;
+}
+
+body{
+    background-color: black;
+    color: aliceblue;
+      font-family: "Oswald", sans-serif;
+      font-optical-sizing: auto;
+      font-weight: weight;
+      font-style: normal;
+}
+
+#califi{
+    display: inline-block;
+}
+
+.titulo-pelicula{
+    font-size: 80px;
+    /*font-style: oblique;*/
+    font-weight: 900;
+}
+
+.imgBanner{
+    
+    background-size: cover;
+   
+
+   
+}
+
+
+header{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 100px;
+    z-index: 10;
+}
+
+#imagen{
+    height: 380px;
+    width: 160px;
+    
+    background-color: red;
+    margin: 10px;
+
+}
+
+.logo{
+    font-size: 40px;
+    color: white;
+    letter-spacing: 1px;
+    font-weight: 800;
+}
+
+.nav li{
+    
+    list-style: none;
+    margin: 0 10px;
+}
+
+.nav li a{
+
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.nav {
+    display: flex;
+}
+
+.nav li:hover a {
+    color: orange;
+}
+
+.search {
+    position: relative;
+    width: 300px;
+    height: 40px;
+}
+
+.search input{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    color: white;
+    background: transparent;
+    border: 1 solid rgba(255, 255, 255, 1);
+    outline: none;
+    border-radius: 4px;
+    padding: 0 10px 0 45px !important;
+    backdrop-filter: blur(10px);    
+}
+
+.search input::placeholder{
+    color: white;
+}
+
+.search i{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 10px;
+    padding-right: 10px;
+    color: white;
+    border-right: 1px solid white;
+
+}
+
+.flex-banner{
+    display: flex;
+}
+.banner{
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    padding: 0 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--imgBanner);
+    background-size: cover;
+
+   
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: 0.5s;
+
+    
+}
+
+.bannerAnime{
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    padding: 0 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: url(../img/yahiko-2qdi24hqs37qfe75.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: 0.5s;
+}
+
+.banner::before{
+    position: absolute;
+    content: '';
+    top: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    
+    /*backdrop-filter: blur(6px);*/
+  
+}
+
+.bannerAnime::before{
+    position: absolute;
+    content: '';
+    top: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.content{
+    position: relative;
+    max-width: 550px;
+    display: none;
+    visibility: hidden;
+    margin-top: 5%;
+    transform: scale(0);
+    transition: 0.5s;
+}
+
+.content.active{
+    display: block;
+    visibility: visible;
+    transform: scale(1);
+    transition: 0.5s;
+}
+
+.title-peli {
+    max-width: 250px;
+}
+
+.banner .content h4{
+    color: rgba(255, 255, 255, 0.5);
+    font-weight: 400;
+    font-size: 30px;
+}
+
+.banner .content h4 span{
+    padding: 0 10px;
+    border-right: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.banner .content h4 span:first-child{
+    padding-left: 0;
+}
+
+.banner .content h4 span:last-child{
+    border-right: none;
+}
+
+.banner .content h4 span i{
+    background: orange;
+    color: white;
+    padding: 0 8px;
+    display: inline-block;
+    border-radius: 2px;
+}
+
+.banner .content p {
+    font-size: 1em;
+    font-weight: 300;
+    line-height: 1.5em;
+    margin: 10px 0 20px;
+}
+
+.banner .content .button {
+    position: relative;
+}
+
+.banner .content .button a{
+    position: relative;
+    display: inline-block;
+    margin-right: 10px;
+    background: orange;
+    color: white;
+    padding: 6px 20px;
+    text-decoration: none;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.banner .content .button a:nth-child(2){
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.banner .content .button a:hover:nth-child(2){
+    background: orange;
+}
+
+.banner .carousel-box{
+    position: relative;
+    min-width: 950px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+
+/*anime*/
+
+.bannerAnime .content h4{
+    color: rgba(255, 255, 255, 0.5);
+    font-weight: 400;
+    font-size: 30px;
+}
+
+.bannerAnime .content h4 span{
+    padding: 0 10px;
+    border-right: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.bannerAnime .content h4 span:first-child{
+    padding-left: 0;
+}
+
+.bannerAnime .content h4 span:last-child{
+    border-right: none;
+}
+
+.bannerAnime .content h4 span i{
+    background: orange;
+    color: white;
+    padding: 0 8px;
+    display: inline-block;
+    border-radius: 2px;
+}
+
+.bannerAnime .content p {
+    font-size: 1em;
+    font-weight: 300;
+    line-height: 1.5em;
+    margin: 10px 0 20px;
+}
+
+.bannerAnime .content .button {
+    position: relative;
+}
+
+.bannerAnime .content .button a{
+    position: relative;
+    display: inline-block;
+    margin-right: 10px;
+    background: orange;
+    color: white;
+    padding: 6px 20px;
+    text-decoration: none;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.bannerAnime .content .button a:nth-child(2){
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.bannerAnime .content .button a:hover:nth-child(2){
+    background: orange;
+}
+
+.bannerAnime .carousel-box{
+    position: relative;
+    min-width: 950px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+
+
+.ver_trailer{
+    position: relative;
+    display: inline-block;
+    margin-right: 10px;
+    background: orange;
+    color: white;
+    padding: 6px 20px;
+    text-decoration: none;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: 0.5s;
+    cursor: pointer;
+}.ver_trailer_banner{
+    position: relative;
+    display: inline-block;
+    margin-right: 10px;
+    background: orange;
+    color: white;
+    padding: 6px 20px;
+    text-decoration: none;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: 0.5s;
+    cursor: pointer;
+}.ver_trailer_p{
+    position: relative;
+    display: inline-block;
+    margin-right: 10px;
+    background: orange;
+    color: white;
+    padding: 6px 20px;
+    text-decoration: none;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+
+
+main{
+    
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+    margin: 20px;
+    justify-content: center;
+
+}
+
+.movie{
+
+    width: 200px;
+    margin-top: 1px;
+    height: 320px;
+}
+
+
+.movie img{
+    margin-top: 50px;
+    width: 200px;
+    height: 300px;
+    border-radius: 5px;
+    transition: all 0.4s;
+    }
+
+.movie img:hover{
+    transform: scale(1.08);
+}
+
+h4{
+    margin-top: 15px;
+    text-align: center;
+    font-size: 15px;
+
+}
+
+
+/*overlay*/
+
+/* The Overlay (background) */
+.overlay {
+    /* Height & width depends on how you want to reveal the overlay (see JS below) */   
+    height: 100%;
+    width: 0;
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    background-color: rgb(0,0,0); /* Black fallback color */
+    background-color: rgba(0,0,0, 0.9); /* Black w/opacity */
+    overflow-x: hidden; /* Disable horizontal scroll */
+    transition: 0.5s; /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
+  }
+  
+  /* Position the content inside the overlay */
+  .overlay-content {
+    position: relative;
+    top: 25%; /* 25% from the top */
+    width: 100%; /* 100% width */
+    text-align: center; /* Centered text/links */
+    margin-top: 30px; /* 30px top margin to avoid conflict with the close button on smaller screens */
+  }
+  
+  /* The navigation links inside the overlay */
+  .overlay a {
+    padding: 8px;
+    text-decoration: none;
+    font-size: 36px;
+    color: #818181;
+    display: block; /* Display block instead of inline */
+    transition: 0.3s; /* Transition effects on hover (color) */
+  }
+  
+  /* When you mouse over the navigation links, change their color */
+  .overlay a:hover, .overlay a:focus {
+    color: #f1f1f1;
+  }
+  
+  /* Position the close button (top right corner) */
+  .overlay .closebtn {
+    position: absolute;
+    top: 20px;
+    right: 45px;
+    font-size: 60px;
+  }
+  
+  /* When the height of the screen is less than 450 pixels, change the font-size of the links and position the close button again, so they don't overlap */
+  @media screen and (max-height: 450px) {
+    .overlay a {font-size: 20px}
+    .overlay .closebtn {
+      font-size: 40px;
+      top: 15px;
+      right: 35px;
+    }
+  }
+
+ /*menu*/
+ #tags{
+    width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin: 10px auto;
+ }
+
+ .tag{
+    color: white;
+    padding: 10px 20px;
+    background-color: orange;
+    display: inline-block;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 10px;
+ }
+ .tag.seleccionado{
+    color: white;
+    padding: 10px 20px;
+    background-color: rgb(0, 255, 13);
+    display: inline-block;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 10px;
+ }

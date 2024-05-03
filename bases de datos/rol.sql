@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-04-2024 a las 04:43:55
+-- Tiempo de generación: 02-05-2024 a las 07:12:56
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -43,6 +43,18 @@ INSERT INTO `cargo` (`id`, `descripcion`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `comentarios`
+--
+
+CREATE TABLE `comentarios` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(100) NOT NULL,
+  `comentario` varchar(300) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `usuarios`
 --
 
@@ -62,8 +74,9 @@ INSERT INTO `usuarios` (`id`, `nombre`, `usuario`, `contraseña`, `id_cargo`) VA
 (7, 'jordano', 'j@gmail.com', 'toto', 2),
 (8, 'camilo', 'c@gmail.com', 'camilo', 1),
 (9, 'camilo prueba rol', 'rol@gmail.com', 'camilo2005', 2),
-(10, 'jordano', '', '', 2),
-(11, 'jordano', 'j@gmail.com', 'jordano', 2);
+(11, 'jordano', 'j@gmail.com', 'jordano', 2),
+(16, 'camilo', 'camilo@gmail.com', 'ca', 2),
+(17, 'Taladros', 't@gmail.com', 'c123456', 2);
 
 --
 -- Índices para tablas volcadas
@@ -73,6 +86,12 @@ INSERT INTO `usuarios` (`id`, `nombre`, `usuario`, `contraseña`, `id_cargo`) VA
 -- Indices de la tabla `cargo`
 --
 ALTER TABLE `cargo`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `comentarios`
+--
+ALTER TABLE `comentarios`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -93,10 +112,16 @@ ALTER TABLE `cargo`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT de la tabla `comentarios`
+--
+ALTER TABLE `comentarios`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- Restricciones para tablas volcadas
