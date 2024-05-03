@@ -6,7 +6,7 @@
             if ($inser) {
                echo   "gracias por comentar sphp :(";
             //    include "../../Html/index.php";
-            header("Location:../../Html/index.Html");
+            header("Location:../../Html/index.php");
             }
             else {
                 $error = "error";

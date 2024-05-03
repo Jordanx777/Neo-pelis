@@ -14,8 +14,8 @@ class Validacion
         $filas = mysqli_fetch_array($resultado);
 
         if ($filas["id_cargo"] == 1 ) { //si es 1 es admin
-            $_SESSION["nombre"] = $correo;
-            header("Location:../views/inicio.php");
+            $_SESSION["correo"] = $correo;
+            header("Location:../../Html/index.php");
 
         }
         if($filas['id_cargo'] == 2 ){ // si es 2 cliente 

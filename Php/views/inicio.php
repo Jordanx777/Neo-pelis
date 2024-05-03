@@ -12,7 +12,7 @@
     session_start();
     if (isset($_SESSION["nombre"])) {
         echo '<div class="row"><h4 class="text-dark">Hola admin <span class="text-primary">' . $_SESSION['nombre'] . '</span></h4><a class="btn btn-outline-primary text-center" href="../controller/ControladorSalir.php?usuario=salir">Cerrar sesión</a></div>';
-
+       echo '<a href="../../Html/index.php">inicio</a>'; 
     }
     
     ?>

@@ -10,7 +10,8 @@
 
 <body>
     <div class="row g-3 align-items-center mx-auto">
-        <?php if (isset($error)) : ?>
+        <?php 
+        if (isset($error)) : ?>
             <p><?php echo $error; ?></p>
         <?php endif; ?>
 
@@ -20,7 +21,9 @@
                 <input class="form-control" name="correo" placeholder="Ingrese su correo" type="email"><br>
                 <input class="form-control" name="contraseña" placeholder="Ingrese su contraseña" type="password"><br>
                 <input name="inicio" type="submit" class="btn btn-primary mb-3" value="iniciar sesion"><br>
-                <a href="../views/formulario.php">registrate</a>
+                <a href="../views/formulario.php">registrate</a><br>
+                <a href="../../Html/index.php">inicio</a>
+
             </form>
         </div>
     </div>

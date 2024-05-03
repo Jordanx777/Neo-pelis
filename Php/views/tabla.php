@@ -24,12 +24,13 @@
             <tbody>
                 <?php
                     $conexion = new mysqli("localhost", "root", "", "rol");
+                    // include ("../conexion.php");
                 $consulta = $conexion->query("SELECT * FROM comentarios");
-                while ($sql = $consulta->fetch_assoc()) { ?>
+                while ($sql = $consulta->fetch_object()) { ?>
                     <tr>
-                        <td><?php echo $sql["id"] ?></td>
-                        <td><?php echo $sql["nombre"] ?></td>
-                        <td><?php echo $sql["comentario"] ?></td>
+                        <td><?= $sql->id ?></td>
+                        <td><?= $sql->nombre?></td>
+                        <td><?= $sql->comentario ?></td>
                         <td>
                             <a href="">eliminar</a>
                         </td>
